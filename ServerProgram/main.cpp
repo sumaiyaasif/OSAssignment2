@@ -1,15 +1,38 @@
-//
-//  main.cpp
-//  ServerProgram
-//
-//  Created by Sumaiya Asif on 3/13/17.
-//  Copyright © 2017 Sumaiya Asif. All rights reserved.
-//
-
+#include <fstream>
 #include <iostream>
+#include <vector>
+using namespace std;
 
-int main(int argc, const char * argv[]) {
+
+vector<pair<string, string>> dataInput;
+
+
+void readFile(){
+    
+    string filename;
+    string userID;
+    string publicKey;
+//    cout << "Enter a filename: " ;
+//    cin >> filename;
+    ifstream infile("sample.txt");
+    while (!infile.eof()) {
+        getline(infile, userID, ' ');
+        getline(infile, publicKey);
+        dataInput.push_back(make_pair(userID, publicKey));
+    }
+}
+
+/* Prints dataInput with their durations. Does not take any arguments. Does not return anything. */
+void printdataInput() {
+    for (int i = 0; i < dataInput.size(); i++) {
+        cout << dataInput[i].first << ", " << dataInput[i].second << endl;
+    }
+}
+
+int main() {
     // insert code here...
-    std::cout << "Hello, World!\n";
+    readFile();
+    printdataInput();
     return 0;
 }
+
